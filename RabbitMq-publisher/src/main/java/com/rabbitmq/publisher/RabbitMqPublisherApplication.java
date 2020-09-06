@@ -3,7 +3,6 @@ package com.rabbitmq.publisher;
 
 import com.rabbitmq.publisher.beans.SimpleMessage;
 import org.json.JSONObject;
-import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -97,12 +96,7 @@ public class RabbitMqPublisherApplication implements CommandLineRunner {
 
 		Message message=messageConverter.toMessage(simpleMessage,messageProperties);
 
-        try {
-            rabbitTemplate.send(exchangeName,"",message);
-        } catch (AmqpException e) {
-            e.printStackTrace();
-        } finally {
-        }
+		rabbitTemplate.send(exchangeName,"",message);
+	}
 
-    }
 }
